@@ -1,0 +1,47 @@
+{
+  "name": "cursor-usage",
+  "displayName": "Cursor Usage",
+  "description": "View your Cursor usage information directly within VS Code",
+  "version": "0.0.1",
+  "publisher": "khduy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khduy/cursor-usage.git"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {},
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify && npm run copy-wasm",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap && npm run copy-wasm",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "copy-wasm": "cp node_modules/sql.js/dist/sql-wasm.wasm out/ && cp node_modules/sql.js/dist/sql-wasm-debug.wasm out/",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/sql.js": "^1.4.4",
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
+    "sql.js": "^1.8.0"
+  }
+}

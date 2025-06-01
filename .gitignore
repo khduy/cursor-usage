@@ -1,0 +1,12 @@
+# Build output
+out/
+
+# Dependencies
+node_modules/
+
+# VS Code settings
+.vscode/*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
